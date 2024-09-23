@@ -2,26 +2,33 @@
 
 using namespace std;
 
-struct produto all[100];
-int quantidadeatual = 0;
-
-struct produto{
+struct produto {
     string nome;
     float preco;
     int stock;
 };
 
-void addproduto(produto produtos, int& quantidadeatual){
+produto all[100]; //Array que guarda os produtos
+int quantidadeatual = 0; //Quantidade atual do stock
+
+// Função para adicionar um produto
+void addproduto(int& quantidadeatual) {
     produto p;
     cout << "nome do produto:";
     cin >> p.nome;
-    cout << "preco do produto";
+    cout << "preco do produto:";
     cin >> p.preco;
+    cout << "quantidade:";
+    cin >> p.stock;  
 
+    // Adiciona o produto ao array
+    all[quantidadeatual] = p;
+    quantidadeatual++;  // Incrementa a quantidade de produtos
 }
 
-void exibirproduto(const produto,int& quantidadeatual){
-    cout << "\nLista de produtos:\n";
+// Função para exibir todos os produtos
+void exibirproduto(const produto all[], int quantidadeatual) {  
+    cout << "Lista de produtos:" << endl;
     for (int i = 0; i < quantidadeatual; i++) {
         cout << "Produto " << i + 1 << ": " << all[i].nome 
              << ", Preco: " << all[i].preco 
@@ -29,26 +36,25 @@ void exibirproduto(const produto,int& quantidadeatual){
     }
 }
 
-float calcularvalortotal(const produto produtos, int quantidadeatual){
-    
-    
+// Função para calcular o valor total do stock
+float calcularvalortotal(const produto all[], int quantidadeatual) {  
     float total = 0.0;
     for (int i = 0; i < quantidadeatual; i++) {
         total += all[i].preco * all[i].stock;
     }
     return total;
-
-
 }
+
+// Função de menu
 void menu() {
     int choice;
     do {
-        cout << "\nMenu:\n";
-        cout << "1. Adicionar/Atualizar produto\n";
-        cout << "2. Exibir todos os produtos\n";
-        cout << "3. Calcular valor total do stock\n";
-        cout << "4. Sair\n";
-        cout << "Escolha uma opção: ";
+        cout << "Menu:" << endl;
+        cout << "1. Adicionar/Atualizar produto" << endl;
+        cout << "2. Exibir todos os produtos" << endl;
+        cout << "3. Calcular valor total do stock" << endl;
+        cout << "4. Sair" << endl;
+        cout << "Escolha uma opção:";
         cin >> choice;
 
         switch (choice) {
@@ -56,26 +62,24 @@ void menu() {
                 addproduto(quantidadeatual);
                 break;
             case 2:
-                exibirproduto(all, quantidadeatual);
+                exibirproduto(all, quantidadeatual);  
                 break;
             case 3:
                 {
-                    float total = calcularvalortotal(all, quantidadeatual);
-                    cout << "\nValor total do stock: " << total << endl;
+                    float total = calcularvalortotal(all, quantidadeatual);  
+                    cout << "Valor total do stock: " << total << endl;
                 }
                 break;
             case 4:
-                cout << "Saindo...\n";
+                cout << "Bye Bye";
                 break;
             default:
-                cout << "Opção inválida. Tente novamente.\n";
+                cout << "Opção inválida. Tente novamente.";
         }
     } while (choice != 4);
 }
 
-int main(){
-
-menu();
-
+int main() {
+    menu();
     return 0;
 }
