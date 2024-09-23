@@ -50,7 +50,7 @@ void menu() {
     int choice;
     do {
         cout << "Menu:" << endl;
-        cout << "1. Adicionar/Atualizar produto" << endl;
+        cout << "1. Adicionar produto" << endl;
         cout << "2. Exibir todos os produtos" << endl;
         cout << "3. Calcular valor total do stock" << endl;
         cout << "4. Sair" << endl;
